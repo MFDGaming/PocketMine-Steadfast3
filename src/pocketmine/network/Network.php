@@ -287,6 +287,51 @@ class Network {
 			case Info::PROTOCOL_408:
 				$class = $this->packetPool331[$id];
 				break;
+			case Info::PROTOCOL_409:
+				$class = $this->packetPool331[$id];
+				break;
+			case Info::PROTOCOL_410:
+				$class = $this->packetPool331[$id];
+				break;
+			case Info::PROTOCOL_411:
+				$class = $this->packetPool331[$id];
+				break;
+			case Info::PROTOCOL_412:
+				$class = $this->packetPool331[$id];
+				break;
+			case Info::PROTOCOL_413:
+				$class = $this->packetPool331[$id];
+				break;
+			case Info::PROTOCOL_414:
+				$class = $this->packetPool331[$id];
+				break;
+			case Info::PROTOCOL_415:
+				$class = $this->packetPool331[$id];
+				break;
+			case Info::PROTOCOL_416:
+				$class = $this->packetPool331[$id];
+				break;
+			case Info::PROTOCOL_417:
+				$class = $this->packetPool331[$id];
+				break;
+			case Info::PROTOCOL_418:
+				$class = $this->packetPool331[$id];
+				break;
+			case Info::PROTOCOL_419:
+				$class = $this->packetPool331[$id];
+				break;
+			case Info::PROTOCOL420:
+				$class = $this->packetPool331[$id];
+				break;
+			case Info::PROTOCOL421:
+				$class = $this->packetPool331[$id];
+				break;
+			case Info::PROTOCOL422:
+				$class = $this->packetPool331[$id];
+				break;
+			case Info::PROTOCOL423:
+				$class = $this->packetPool331[$id];
+				break;
 			case Info::PROTOCOL_310:
 			case Info::PROTOCOL_311:
 			case Info::PROTOCOL_330:
@@ -304,7 +349,38 @@ class Network {
 	
 	public static function getChunkPacketProtocol($playerProtocol){
 		switch ($playerProtocol) {
+			case Info::PROTOCOL_423:
+				return Info::PROTOCOL_423;
+			case Info::PROTOCOL_422:
+				return Info::PROTOCOL_422;
+			case Info::PROTOCOL_421:
+				return Info::PROTOCOL_421;
+			case Info::PROTOCOL_420:
+				return Info::PROTOCOL_420;
+			case Info::PROTOCOL_419:
+				return Info::PROTOCOL_419;
+			case Info::PROTOCOL_418:
+				return Info::PROTOCOL_418;
+			case Info::PROTOCOL_417:
+				return Info::PROTOCOL_417;
+			case Info::PROTOCOL_416:
+				return Info::PROTOCOL_416;
+			case Info::PROTOCOL_415:
+				return Info::PROTOCOL_415;
+			case Info::PROTOCOL_414:
+				return Info::PROTOCOL_414;
+			case Info::PROTOCOL_413:
+				return Info::PROTOCOL_413;
+			case Info::PROTOCOL_412:
+				return Info::PROTOCOL_412;
+			case Info::PROTOCOL_411:
+				return Info::PROTOCOL_411;
+			case Info::PROTOCOL_410:
+				return Info::PROTOCOL_410;
+			case Info::PROTOCOL_409:
+				return Info::PROTOCOL_409;
 			case Info::PROTOCOL_408:
+				return Info::PROTOCOL_408;
 			case Info::PROTOCOL_407:
 			case Info::PROTOCOL_406:
 				return Info::PROTOCOL_406;

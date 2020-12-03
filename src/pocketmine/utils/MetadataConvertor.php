@@ -217,6 +217,21 @@ class MetadataConvertor {
 
 	private static function updateMetaIds($meta, $protocol) {
 		switch ($protocol) {
+			case Info::PROTOCOL_423:
+			case Info::PROTOCOL_422:
+			case Info::PROTOCOL_421:
+			case Info::PROTOCOL_420:
+			case Info::PROTOCOL_419:
+			case Info::PROTOCOL_418:
+			case Info::PROTOCOL_417:
+			case Info::PROTOCOL_416:
+			case Info::PROTOCOL_415:
+			case Info::PROTOCOL_414:
+			case Info::PROTOCOL_413:
+			case Info::PROTOCOL_412:
+			case Info::PROTOCOL_411:
+			case Info::PROTOCOL_410:
+			case Info::PROTOCOL_409:
 			case Info::PROTOCOL_408:
 			case Info::PROTOCOL_407:
 			case Info::PROTOCOL_406:
@@ -283,6 +298,21 @@ class MetadataConvertor {
 			return $meta;
 		}
 		switch ($protocol) {
+			case Info::PROTOCOL_423:
+			case Info::PROTOCOL_422:
+			case Info::PROTOCOL_421:
+			case Info::PROTOCOL_420:
+			case Info::PROTOCOL_419:
+			case Info::PROTOCOL_418:
+			case Info::PROTOCOL_417:
+			case Info::PROTOCOL_416:
+			case Info::PROTOCOL_415:
+			case Info::PROTOCOL_414:
+			case Info::PROTOCOL_413:
+			case Info::PROTOCOL_412:
+			case Info::PROTOCOL_411:
+			case Info::PROTOCOL_410:
+			case Info::PROTOCOL_409:
 			case Info::PROTOCOL_408:
 			case Info::PROTOCOL_407:
 			case Info::PROTOCOL_406:

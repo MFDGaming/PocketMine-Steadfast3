@@ -320,16 +320,16 @@ class Network {
 			case Info::PROTOCOL_419:
 				$class = $this->packetPool331[$id];
 				break;
-			case Info::PROTOCOL420:
+			case Info::PROTOCOL_420:
 				$class = $this->packetPool331[$id];
 				break;
-			case Info::PROTOCOL421:
+			case Info::PROTOCOL_421:
 				$class = $this->packetPool331[$id];
 				break;
-			case Info::PROTOCOL422:
+			case Info::PROTOCOL_422:
 				$class = $this->packetPool331[$id];
 				break;
-			case Info::PROTOCOL423:
+			case Info::PROTOCOL_423:
 				$class = $this->packetPool331[$id];
 				break;
 			case Info::PROTOCOL_310:

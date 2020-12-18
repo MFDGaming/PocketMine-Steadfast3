@@ -21,11 +21,11 @@ use raklib\Binary;
 
 #include <rules/RakLibPacket.h>
 
-abstract class AcknowledgePacket extends Packet{
+abstract class AcknowledgePacket extends Packet {
 	/** @var int[] */
 	public $packets = [];
 
-	public function encode(){
+	public function encode() {
 		parent::encode();
 		$records = 0;
 		$payload = "";

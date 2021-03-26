@@ -25,7 +25,7 @@ class ChunkSection implements \pocketmine\level\format\ChunkSection {
 	}
 
 	public function getBlockId($x, $y, $z) {
-		return ord($this->blocks{($x << 8) + ($z << 4) + $y});
+		return ord($this->blocks[($x << 8) + ($z << 4) + $y]);
 	}
 
 	public function setBlockId($x, $y, $z, $id) {
@@ -33,7 +33,7 @@ class ChunkSection implements \pocketmine\level\format\ChunkSection {
 	}
 
 	public function getBlockData($x, $y, $z) {
-		$m = ord($this->data{($x << 7) + ($z << 3) + ($y >> 1)});
+		$m = ord($this->data[($x << 7) + ($z << 3) + ($y >> 1)]);
 		if (($y & 1) === 0) {
 			return $m & 0x0F;
 		} else {
@@ -43,7 +43,7 @@ class ChunkSection implements \pocketmine\level\format\ChunkSection {
 
 	public function setBlockData($x, $y, $z, $data) {
 		$i = ($x << 7) + ($z << 3) + ($y >> 1);
-		$old_m = ord($this->data{$i});
+		$old_m = ord($this->data[$i]);
 		if (($y & 1) === 0) {
 			$this->data[$i] = chr(($old_m & 0xf0) | ($data & 0x0f));
 		} else {
@@ -81,7 +81,7 @@ class ChunkSection implements \pocketmine\level\format\ChunkSection {
 
 		if ($meta !== null) {
 			$i >>= 1;
-			$old_m = ord($this->data{$i});
+			$old_m = ord($this->data[$i]);
 			if (($y & 1) === 0) {
 				$this->data[$i] = chr(($old_m & 0xf0) | ($meta & 0x0f));
 				if (($old_m & 0x0f) !== $meta) {

@@ -54,7 +54,7 @@ class PlayerSkinPacket extends PEPacket {
 				$this->isPremiumSkin = true;
 			}
 			$this->newSkinName = $this->getString();
-			$this->oldSkinName = $this->getString();
+			$this->oldSkinName = $this->getString(); 
 			if ($playerProtocol >= Info::PROTOCOL_406) {
 				$this->isTrustedSkin = $this->getByte(); //whether skin trusted marketplace content
 			}	

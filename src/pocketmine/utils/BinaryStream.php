@@ -5,6 +5,7 @@ namespace pocketmine\utils;
 use pocketmine\item\Item;
 use pocketmine\nbt\NBT;
 use pocketmine\network\protocol\Info;
+use pocketmine\Player;
 use function chr;
 use function ord;
 use function strlen;
@@ -16,6 +17,8 @@ class BinaryStream {
 	public $offset;
 	/** @var string */
 	public $buffer;
+	
+	protected $deviceId = Player::OS_UNKNOWN;
 
 	public function __construct($buffer = "", $offset = 0){
 		$this->buffer = $buffer;

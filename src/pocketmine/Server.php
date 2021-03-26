@@ -375,7 +375,7 @@ class Server{
 	 * @return string
 	 */
 	public function getVersion(){
-		return \pocketmine\MINECRAFT_VERSION;
+		return Info::MINECRAFT_VERSION;
 	}
 
 	/**

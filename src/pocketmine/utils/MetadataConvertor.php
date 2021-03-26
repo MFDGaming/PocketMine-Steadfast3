@@ -217,6 +217,7 @@ class MetadataConvertor {
 
 	private static function updateMetaIds($meta, $protocol) {
 		switch ($protocol) {
+			case Info::PROTOCOL_428:
 			case Info::PROTOCOL_423:
 			case Info::PROTOCOL_422:
 			case Info::PROTOCOL_421:
@@ -298,6 +299,7 @@ class MetadataConvertor {
 			return $meta;
 		}
 		switch ($protocol) {
+			case Info::PROTOCOL_428:
 			case Info::PROTOCOL_423:
 			case Info::PROTOCOL_422:
 			case Info::PROTOCOL_421:
@@ -364,7 +366,7 @@ class MetadataConvertor {
 		$flags = strrev(decbin($meta[Entity::DATA_FLAGS][1]));
 		$flagsLength = strlen($flags);
 		for ($i = 0; $i < $flagsLength; $i++) {
-			if ($flags{$i} === '1') {
+			if ($flags[$i] === '1') {
 				$newflags |= 1 << (isset($protocolFlags[$i]) ? $protocolFlags[$i] : $i);
 			}
 		}

@@ -84,7 +84,7 @@ class LoginPacket extends PEPacket {
 			return;
 		}
 		$data = $this->getString();
-		if (ord($data[0]) != 120 || (($decodedData = @zlib_decode($data)) === false)) {
+		if (ord($data{0}) != 120 || (($decodedData = @zlib_decode($data)) === false)) {
 			$body = $data;
 		} else {
 			$body = $decodedData;
@@ -161,7 +161,6 @@ class LoginPacket extends PEPacket {
 		} else {
 			$this->playerData = self::load($this->playerData);
 		}
-
 		$this->username = $this->chains['data'][$dataIndex]['extraData']['displayName'];
 		$this->clientId = $this->chains['data'][$dataIndex]['extraData']['identity'];
 		$this->clientUUID = UUID::fromString($this->chains['data'][$dataIndex]['extraData']['identity']);
@@ -209,7 +208,7 @@ class LoginPacket extends PEPacket {
 		$this->originalProtocol = $this->protocol1;
 		$this->protocol1 = self::convertProtocol($this->protocol1);		
 		$additionalSkinDataList = [
-			'AnimatedImageData', 'CapeId', 'CapeImageHeight', 'CapeImageWidth', 'CapeOnClassicSkin', 'PersonaSkin', 'PremiumSkin', 'SkinAnimationData', 'SkinImageHeight', 'SkinImageWidth', 'SkinResourcePatch'	
+			'PlayFabId','AnimatedImageData', 'CapeId', 'CapeImageHeight', 'CapeImageWidth', 'CapeOnClassicSkin', 'PersonaSkin', 'PremiumSkin', 'SkinAnimationData', 'SkinImageHeight', 'SkinImageWidth', 'SkinResourcePatch'	
 		];
 		$additionalSkinData = [];
 		foreach ($additionalSkinDataList as $propertyName) {
@@ -224,6 +223,18 @@ class LoginPacket extends PEPacket {
 		}
 		if (isset($additionalSkinData['SkinResourcePatch'])) {
 			$additionalSkinData['SkinResourcePatch'] = base64_decode($additionalSkinData['SkinResourcePatch']);
+		}
+		if (isset($this->playerData["PersonaPieces"])) {
+			$additionalSkinData['PersonaPieces'] = $this->playerData["PersonaPieces"];
+		}
+		if (isset($this->playerData["ArmSize"])) {
+			$additionalSkinData['ArmSize'] = $this->playerData["ArmSize"];
+		}
+		if (isset($this->playerData["SkinColor"])) {
+			$additionalSkinData['SkinColor'] = $this->playerData["SkinColor"];
+		}
+		if (isset($this->playerData["PieceTintColors"])) {
+			$additionalSkinData['PieceTintColors'] = $this->playerData["PieceTintColors"];
 		}
 		$this->additionalSkinData = $additionalSkinData;
 		$this->checkSkinData($this->skin, $this->skinGeometryName, $this->skinGeometryData, $this->additionalSkinData);

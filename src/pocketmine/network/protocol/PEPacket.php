@@ -2,6 +2,7 @@
 
 namespace pocketmine\network\protocol;
 
+use pocketmine\item\Item;
 use pocketmine\network\protocol\DataPacket;
 use pocketmine\network\protocol\Info;
 use pocketmine\network\multiversion\BlockPallet;
@@ -62,42 +63,18 @@ abstract class PEPacket extends DataPacket {
 			case Info::PROTOCOL_428:
 				return Info::PROTOCOL_428;
 			case Info::PROTOCOL_423:
-				return Info::PROTOCOL_423;
 			case Info::PROTOCOL_422:
 				return Info::PROTOCOL_422;
-			case Info::PROTOCOL_421:
-				return Info::PROTOCOL_421;
-			case Info::PROTOCOL_420:
-				return Info::PROTOCOL_420;
 			case Info::PROTOCOL_419:
 				return Info::PROTOCOL_419;
-			case Info::PROTOCOL_418:
-				return Info::PROTOCOL_418;
-			case Info::PROTOCOL_417:
-				return Info::PROTOCOL_417;
-			case Info::PROTOCOL_416:
-				return Info::PROTOCOL_416;
-			case Info::PROTOCOL_415:
-				return Info::PROTOCOL_415;
-			case Info::PROTOCOL_414:
-				return Info::PROTOCOL_414;
-			case Info::PROTOCOL_413:
-				return Info::PROTOCOL_413;
-			case Info::PROTOCOL_412:
-				return Info::PROTOCOL_412;
-			case Info::PROTOCOL_410:
-				return Info::PROTOCOL_410;
-			case Info::PROTOCOL_409:
-				return Info::PROTOCOL_409;
 			case Info::PROTOCOL_408:
-				return Info::PROTOCOL_408;
 			case Info::PROTOCOL_407:
 				return Info::PROTOCOL_407;
 			case Info::PROTOCOL_406:
 				return Info::PROTOCOL_406;
 			case Info::PROTOCOL_400:
 				return Info::PROTOCOL_400;
-		        case Info::PROTOCOL_396:
+			case Info::PROTOCOL_396:
 			case Info::PROTOCOL_395:
 			case Info::PROTOCOL_394:
 			case Info::PROTOCOL_393:
@@ -194,7 +171,21 @@ abstract class PEPacket extends DataPacket {
 	
 	public static function getBlockRuntimeID($id, $meta, $playerProtocol) {
 		$pallet = self::getPallet($playerProtocol);
+		if ($playerProtocol >= Info::PROTOCOL_419) {
+			$meta = self::getActualMeta($id, $meta);
+		}
 		return is_null($pallet) ? 0 : $pallet->getBlockRuntimeIDByData($id, $meta);
+	}
+
+	private static function getActualMeta($id, $meta) {
+		if ($id == Item::ITEM_FRAME_BLOCK) {
+			$array = [3 => 8, 4 => 5, 5 => 4];
+			return $array[$meta]??$meta;
+		}
+		if ($id == Item::LEAVE2 && $meta > 7) {			
+			return 7;
+		}
+		return $meta;
 	}
 	
 	public static function getBlockPalletData($playerProtocol) {

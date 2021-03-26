@@ -30,7 +30,6 @@ class UpdateAttributesPacket extends PEPacket{
     const EXPERIENCE = "minecraft:player.experience";
     const EXPERIENCE_LEVEL = "minecraft:player.level";
 	const SPEED = "minecraft:movement";
-    const ABSORPTION = "minecraft:absorption";
 
     public $entityId;
 
@@ -47,7 +46,7 @@ class UpdateAttributesPacket extends PEPacket{
 
 	public function encode($playerProtocol) {
 		$this->reset($playerProtocol);
-		$this->putVarInt($this->entityId);
+		$this->putEntityRuntimeId($this->entityId);
 		if (empty($this->attributes)) {
 			$this->putVarInt(1);
 			$this->putLFloat($this->minValue);
@@ -64,6 +63,9 @@ class UpdateAttributesPacket extends PEPacket{
 				$this->putLFloat($attribute['default']);
 				$this->putString($attribute['name']);
 			}
+		}
+		if ($playerProtocol >= Info::PROTOCOL_419) {
+			$this->putVarInt(0);
 		}
 	}
 

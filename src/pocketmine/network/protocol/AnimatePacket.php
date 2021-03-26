@@ -38,18 +38,17 @@ class AnimatePacket extends PEPacket{
 	
 	public $action;
 	public $eid;
-	public $data;
 
 	public function decode($playerProtocol){
 		$this->getHeader($playerProtocol);
 		$this->action = $this->getSignedVarInt();
-		$this->eid = $this->getVarInt();
+		$this->eid = $this->getEntityRuntimeId();
 	}
 
 	public function encode($playerProtocol){
 		$this->reset($playerProtocol);
 		$this->putSignedVarInt($this->action);
-		$this->putVarInt($this->eid);
+		$this->putEntityRuntimeId($this->eid);
 		switch ($this->action) {
 			case self::ACTION_ROW_RIGHT:
 			case self::ACTION_ROW_LEFT:

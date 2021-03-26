@@ -118,26 +118,13 @@ abstract class DataPacket extends BinaryStream{
 		self::$packetsIds[Info::PROTOCOL_390] = $oClass->getConstants();
 		self::$packetsIds[Info::PROTOCOL_392] = $oClass->getConstants();
 		self::$packetsIds[Info::PROTOCOL_393] = $oClass->getConstants();
-		self::$packetsIds[Info::PROTOCOL_400] = $oClass->getConstants();
+		self::$packetsIds[Info::PROTOCOL_400] = $oClass->getConstants();		
 		self::$packetsIds[Info::PROTOCOL_406] = $oClass->getConstants();		
-		self::$packetsIds[Info::PROTOCOL_407] = $oClass->getConstants();
-		self::$packetsIds[Info::PROTOCOL_408] = $oClass->getConstants();
-		self::$packetsIds[Info::PROTOCOL_409] = $oClass->getConstants();
-		self::$packetsIds[Info::PROTOCOL_410] = $oClass->getConstants();
-		self::$packetsIds[Info::PROTOCOL_411] = $oClass->getConstants();
-		self::$packetsIds[Info::PROTOCOL_412] = $oClass->getConstants();
-		self::$packetsIds[Info::PROTOCOL_413] = $oClass->getConstants();
-		self::$packetsIds[Info::PROTOCOL_414] = $oClass->getConstants();
-		self::$packetsIds[Info::PROTOCOL_415] = $oClass->getConstants();
-		self::$packetsIds[Info::PROTOCOL_416] = $oClass->getConstants();
-		self::$packetsIds[Info::PROTOCOL_417] = $oClass->getConstants();
-		self::$packetsIds[Info::PROTOCOL_418] = $oClass->getConstants();
-		self::$packetsIds[Info::PROTOCOL_419] = $oClass->getConstants();
-		self::$packetsIds[Info::PROTOCOL_420] = $oClass->getConstants();
-		self::$packetsIds[Info::PROTOCOL_421] = $oClass->getConstants();
-		self::$packetsIds[Info::PROTOCOL_422] = $oClass->getConstants();
-		self::$packetsIds[Info::PROTOCOL_423] = $oClass->getConstants();
-		self::$packetsIds[Info::PROTOCOL_428] = $oClass->getConstants();
+		self::$packetsIds[Info::PROTOCOL_407] = $oClass->getConstants();		
+		self::$packetsIds[Info::PROTOCOL_408] = $oClass->getConstants();		
+		self::$packetsIds[Info::PROTOCOL_419] = $oClass->getConstants();		
+		self::$packetsIds[Info::PROTOCOL_422] = $oClass->getConstants();		
+		self::$packetsIds[Info::PROTOCOL_428] = $oClass->getConstants();		
 	}
 	
 }

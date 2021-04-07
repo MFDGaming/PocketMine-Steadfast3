@@ -1651,7 +1651,7 @@ class Server{
 		$this->addInterface($this->mainInterface = new RakLibInterface($this));
 
 		$this->logger->info("This server is running " . $this->getName() . " version " . ($version->isDev() ?  : "") . $version->get(true) . " \"" . $this->getCodename() . "\" API: " . $this->getApiVersion() . "");
-		$this->logger->info($this->getName() . " is distributed under the Apache 2.0 License");
+		$this->logger->info($this->getName() . " is distributed under the LGPL v3.0 License");
 
 		PluginManager::$pluginParentTimer = new TimingsHandler("** Plugins");
 		Timings::init();

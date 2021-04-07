@@ -47,8 +47,8 @@ class AddEntityPacket extends PEPacket{
 
 	public function encode($playerProtocol){
 		$this->reset($playerProtocol);		
-		$this->putEntityUniqueId($this->eid);
-		$this->putEntityRuntimeId($this->eid);
+		$this->putVarInt($this->eid);
+		$this->putVarInt($this->eid);
 		if ($playerProtocol >= Info::PROTOCOL_310) {
 			$this->putString(Entity::getNameByID($this->type));
 		} else {
@@ -82,8 +82,8 @@ class AddEntityPacket extends PEPacket{
 			$this->putByte($link['type']);
 			$this->putByte(0); //immediate 
 			if ($playerProtocol >= Info::PROTOCOL_406) {
-				$this->putByte(0);//whether the link was changes by the rider
-			}	
+				$this->putByte(0); //whether the link was changed by the rider
+			}
 		}
 	}
 }

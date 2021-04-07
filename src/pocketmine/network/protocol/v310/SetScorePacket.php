@@ -31,7 +31,7 @@ class SetScorePacket extends PEPacket {
 				switch ($entry['type']) {
 					case self::ENTRY_TYPE_PLAYER:
 					case self::ENTRY_TYPE_ENTITY:
-						$this->putEntityUniqueId($entry['id']);
+						$this->putVarInt($entry['id']);
 						break;
 					case self::ENTRY_TYPE_FAKE_PLAYER:
 						$this->putString($entry['customName']);

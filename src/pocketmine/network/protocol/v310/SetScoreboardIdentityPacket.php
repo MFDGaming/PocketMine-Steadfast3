@@ -22,7 +22,7 @@ class SetScoreboardIdentityPacket extends PEPacket {
 		foreach ($this->entries as $entry) {
 			$this->putSignedVarInt($entry['scoreboardId']);
 			if ($this->type === self::TYPE_UPDATE_IDENTITY) {
-				$this->putEntityUniqueId($entry['id']);
+				$this->putVarInt($entry['id']);
 			}
 		}
 	}

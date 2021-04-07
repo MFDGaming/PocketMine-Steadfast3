@@ -70,14 +70,14 @@ class RakLibInterface implements ServerInstance, AdvancedSourceInterface{
 	public function setCount($count, $maxcount) {
 		$this->count = $count;
 		$this->maxcount = $maxcount;
-		$name = "MCPE;";
-		$name .= $this->name . ";";
-		$name .= Info::CURRENT_PROTOCOL . ";";
-		$name .= Info::MINECRAFT_VERSION_NETWORK.";";
-		$name .= $this->count . ";";
-		$name .= $maxcount . ";";
-		$name .= Server::getServerId() . ";";
-		$this->interface->sendOption("name", $name);
+
+		$this->interface->sendOption("name",
+		"MCPE;".addcslashes($this->name, ";") .";".
+		(Info::CURRENT_PROTOCOL).";".
+//		\pocketmine\MINECRAFT_VERSION_NETWORK.";".
+		''.";".
+		$this->count.";".$maxcount . ";". Server::getServerId()
+		);
 	}
 
 	public function __construct(Server $server){
@@ -177,7 +177,6 @@ class RakLibInterface implements ServerInstance, AdvancedSourceInterface{
 				if($buffer !== ""){
 					$pk = $this->getPacket($buffer, $player);			
 					if (!is_null($pk)) {
-						echo bin2hex($pk->buffer[0]) . "\n";
 						try {
 							$pk->decode($player->getPlayerProtocol());
 						}catch(\Exception $e){

@@ -52,7 +52,7 @@ class MovePlayerPacket extends PEPacket{
 
 	public function decode($playerProtocol){
 		$this->getHeader($playerProtocol);
-		$this->eid = $this->getEntityRuntimeId();
+		$this->eid = $this->getVarInt();
 
 		$this->x = $this->getLFloat();
 		$this->y = $this->getLFloat();
@@ -68,7 +68,7 @@ class MovePlayerPacket extends PEPacket{
 
 	public function encode($playerProtocol){
 		$this->reset($playerProtocol);
-		$this->putEntityRuntimeId($this->eid);
+		$this->putVarInt($this->eid);
 
 		$this->putLFloat($this->x);
 		$this->putLFloat($this->y);
@@ -81,13 +81,10 @@ class MovePlayerPacket extends PEPacket{
 		$this->putByte($this->mode);
 		$this->putByte($this->onGround > 0);
 		/** @todo do it right */
-		$this->putEntityRuntimeId(0); // riding runtime ID
+		$this->putVarInt(0); // riding runtime ID
 		if (self::MODE_TELEPORT == $this->mode) {
 			$this->putInt(self::TELEPORTATION_CAUSE_UNKNOWN);
 			$this->putInt(1);
-		}
-		if($playerProtocol >= Info::PROTOCOL_419){
-			$this->putVarInt(0); // which tick from PlayerAuthInputPacket its on //unsigned varint64
 		}
 	}
 

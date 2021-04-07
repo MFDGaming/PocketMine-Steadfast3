@@ -47,7 +47,7 @@ class ContainerOpenPacket extends PEPacket{
 		$this->putSignedVarInt($this->x);
 		$this->putVarInt($this->y);
 		$this->putSignedVarInt($this->z);
-		$this->putEntityUniqueId(-1);
+		$this->putSignedVarInt(-1);
 	}
 
 }

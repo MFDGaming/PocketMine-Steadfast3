@@ -37,7 +37,7 @@ class PlayerActionPacket extends PEPacket{
 
 	public function decode($playerProtocol){
 		$this->getHeader($playerProtocol);
-		$this->eid = $this->getEntityRuntimeId();
+		$this->eid = $this->getVarInt();
 		$this->action = $this->getSignedVarInt();
 		$this->x = $this->getSignedVarInt();
 		$this->y = $this->getVarInt();
@@ -47,7 +47,7 @@ class PlayerActionPacket extends PEPacket{
 
 	public function encode($playerProtocol){
 		$this->reset($playerProtocol);
-		$this->putEntityRuntimeId($this->eid);
+		$this->putVarInt($this->eid);
 		$this->putSignedVarInt($this->action);
 		$this->putSignedVarInt($this->x);
 		$this->putVarInt($this->y);

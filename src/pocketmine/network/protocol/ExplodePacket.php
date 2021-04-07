@@ -64,4 +64,5 @@ class ExplodePacket extends PEPacket{
 			$this->putLong(0);
 		}
 	}
+
 }

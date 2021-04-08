@@ -1,4 +1,3 @@
-
 <?php
 
 namespace pocketmine\network\protocol\v419;

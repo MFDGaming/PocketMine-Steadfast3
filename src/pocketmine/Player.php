@@ -191,6 +191,8 @@ use pocketmine\network\protocol\v120\InventoryContentPacket;
 use pocketmine\network\protocol\v331\BiomeDefinitionListPacket;
 use pocketmine\network\protocol\v310\AvailableEntityIdentifiersPacket;
 use pocketmine\network\protocol\v392\CreativeItemsListPacket;
+use pocketmine\network\protocol\v419\CreativeContentPacket;
+use pocketmine\network\protocol\v419\ItemComponentPacket;
 use function rand;
 use function random_int;
 

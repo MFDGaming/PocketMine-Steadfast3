@@ -74,7 +74,7 @@ class RakLibInterface implements ServerInstance, AdvancedSourceInterface{
 		$name = "MCPE";
 		$name .= ";"
 		$name .= $this->name;
-		$name .= ";"
+		$name .= ";";
 		$name .= Info::CURRENT_PROTOCOL;
 		$name .= ";";
 		$name .= "1.x";
@@ -83,7 +83,7 @@ class RakLibInterface implements ServerInstance, AdvancedSourceInterface{
 		$name .= $maxcount;
 		$name .= ";";
 		$name .= Server::getServerId();
-		$this->interface->sendOptions("name", $name);
+		$this->interface->sendOption("name", $name);
 	}
 
 	public function __construct(Server $server){

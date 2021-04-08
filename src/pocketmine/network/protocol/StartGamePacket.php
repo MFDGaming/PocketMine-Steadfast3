@@ -253,5 +253,16 @@ class StartGamePacket extends PEPacket{
 			$this->putByte(0); // Whether the new item stack net manager is enabled for server authoritative inventory
 		}
 	}
+	
+	static protected function getItemsList() {
+		if (!empty(self::$itemsList)) {
+			return self::$itemsList;
+		} else {
+			$path = __DIR__ . "/data/Items.json";
+			self::$itemsList = json_decode(file_get_contents($path), true);
+			return self::$itemsList;
+		}
+
+	}
 
 }

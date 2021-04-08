@@ -77,7 +77,8 @@ class RakLibInterface implements ServerInstance, AdvancedSourceInterface{
 		$name .= ";";
 		$name .= Info::CURRENT_PROTOCOL;
 		$name .= ";";
-		$name .= "1.x";
+		$name .= "1.2";
+		$name .= ";";
 		$name .= $this->count;
 		$name .= ";";
 		$name .= $maxcount;

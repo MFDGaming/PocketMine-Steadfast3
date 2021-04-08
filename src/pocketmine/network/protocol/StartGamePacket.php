@@ -50,6 +50,8 @@ class StartGamePacket extends PEPacket{
 //		['name' => 'showcoordinates', 'type' => 1, 'value' => 1]
 	];
 	public $multiplayerCorrelationId;
+	
+	static public $itemsList = [];
 
 	public function decode($playerProtocol){
 

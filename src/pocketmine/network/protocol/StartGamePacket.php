@@ -59,7 +59,7 @@ class StartGamePacket extends PEPacket{
 
 	public function encode($playerProtocol){
 		$this->reset($playerProtocol);
-		$this->putVarInt($this->eid); //EntityUniqueID
+		$this->putSignedVarInt($this->eid); //EntityUniqueID
 		$this->putVarInt($this->eid); //EntityUniqueID
 		$this->putSignedVarInt($this->gamemode);	// Entity gamemode
 		$this->putLFloat($this->x); // default position (4)
@@ -138,7 +138,7 @@ class StartGamePacket extends PEPacket{
 			$this->putByte(1); // Broadcast to XBL?
 		}
 		
-		if ($playerProtocol >= Info::PROTOCOL_392 && $playerProtocol < Info::PROTOCOL_400) {
+		if ($playerProtocol < Info::PROTOCOL_400 && $playerProtocol >= Info::PROTOCOL_392) {
 		 	$this->putByte(0); // unknown
 		}
 				
@@ -161,6 +161,11 @@ class StartGamePacket extends PEPacket{
 					$this->putLFloat($rule['value']);
 					break;
 			}	
+		}
+		
+		if ($playerProtocol >= Info::PROTOCOL_419) {
+			$this->putLInt(0); //Experiments
+			$this->putBool(0); //hasPreviouslyUsedExperiments
 		}
 		
 		$this->putByte(0); // is bonus chest enabled
@@ -190,7 +195,7 @@ class StartGamePacket extends PEPacket{
 				$this->putByte(0); // Is World Template Option Locked?
 			}
 			if ($playerProtocol >= Info::PROTOCOL_361) {
-				$this->putByte(1); // Only spawn v1 villagers
+				$this->putByte(0); // Only spawn v1 villagers
 			}		
 			if ($playerProtocol >= Info::PROTOCOL_370) {
 				$this->putString(''); // Vanila version
@@ -225,7 +230,7 @@ class StartGamePacket extends PEPacket{
 				$this->putSignedVarInt(0);
 				$this->putByte(0);
 			}
-		} elseif ($playerProtocol >= Info::PROTOCOL_389 && $playerProtocol < Info::PROTOCOL_419){
+		} elseif ($playerProtocol >= Info::PROTOCOL_389){
 			$this->putByte(0); // is server authoritative over movement
 		}
 		$this->putLong(0); // current level time

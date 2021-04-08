@@ -225,7 +225,7 @@ class StartGamePacket extends PEPacket{
 				$this->putSignedVarInt(0);
 				$this->putByte(0);
 			}
-		} elseif ($playerProtocol >= Info::PROTOCOL_389){
+		} elseif ($playerProtocol >= Info::PROTOCOL_389 && $playerProtocol < Info::PROTOCOL_419){
 			$this->putByte(0); // is server authoritative over movement
 		}
 		$this->putLong(0); // current level time

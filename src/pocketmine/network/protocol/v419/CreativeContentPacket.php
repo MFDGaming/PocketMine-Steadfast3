@@ -8,8 +8,8 @@ use pocketmine\network\protocol\Info;
 
 class CreativeContentPacket extends PEPacket {
 
-	const NETWORK_ID = Info::CREATIVE_ITEMS_LIST_PACKET;
-	const PACKET_NAME = "CREATIVE_ITEMS_LIST_PACKET";
+	const NETWORK_ID = Info::CREATIVE_CONTENT_PACKET;
+	const PACKET_NAME = "CREATIVE_CONTENT_PACKET";
 	
 
 	public $groups;

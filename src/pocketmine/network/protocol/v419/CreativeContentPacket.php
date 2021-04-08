@@ -1,6 +1,6 @@
 <?php
 
-namespace pocketmine\network\protocol;
+namespace pocketmine\network\protocol\v419;
 
 use http\Env\Request;
 use pocketmine\network\protocol\PEPacket;

@@ -3544,17 +3544,33 @@ class Player extends Human implements CommandSender, InventoryHolder, IPlayer {
 		$pk->eid = $this->id;
 		$pk->stringClientVersion = $this->clientVersion;
 		$pk->multiplayerCorrelationId = $this->uuid->toString();
-		$this->directDataPacket($pk);	
+		$this->directDataPacket($pk);
+		if ($this->protocol >= ProtocolInfo::PROTOCOL_419) {
+			$this->directDataPacket(new ItemComponentPacket());
+		}
 		if ($this->protocol >= ProtocolInfo::PROTOCOL_331) {
 			$this->directDataPacket(new AvailableEntityIdentifiersPacket());
 			$this->directDataPacket(new BiomeDefinitionListPacket());
 		}
-
-		$pk = new SetTimePacket();
-		$pk->time = $this->level->getTime();
-		$pk->started = true;
-		$this->dataPacket($pk);
-
+		
+		if ($this->getPlayerProtocol() >= Info::PROTOCOL_392) {
+			$pk = new CreativeContentPacket();
+			$pk->groups = Item::getCreativeGroups();
+			$pk->items = Item::getCreativeItems();
+			$this->directDataPacket($pk);
+		} else {
+			$slots = [];
+			foreach(Item::getCreativeItems() as $item){
+				$slots[] = clone $item['item'];
+			}
+			$pk = new InventoryContentPacket();
+			$pk->inventoryID = Protocol120::CONTAINER_ID_CREATIVE;
+			$pk->items = $slots;
+			$this->dataPacket($pk);
+		}
+		
+		$this->server->sendRecipeList($this);
+		
 		if ($this->getHealth() <= 0) {
 			$this->dead = true;
 		}
@@ -3567,25 +3583,12 @@ class Player extends Human implements CommandSender, InventoryHolder, IPlayer {
 			$this->dead = true;
 		}
 
+		$pk = new SetTimePacket();
+		$pk->time = $this->level->getTime();
+		$pk->started = true;
+		$this->dataPacket($pk);
+		
 		$this->server->getLogger()->info(TextFormat::AQUA . $this->username . TextFormat::WHITE . "/" . TextFormat::AQUA . $this->ip . " connected");
-
-		if ($this->getPlayerProtocol() >= Info::PROTOCOL_392) {
-			$pk = new CreativeItemsListPacket();
-			$pk->groups = Item::getCreativeGroups();
-			$pk->items = Item::getCreativeItems();
-			$this->dataPacket($pk);			
-		} else {
-			$slots = [];
-			foreach(Item::getCreativeItems() as $item){
-				$slots[] = clone $item['item'];
-			}
-			$pk = new InventoryContentPacket();
-			$pk->inventoryID = Protocol120::CONTAINER_ID_CREATIVE;
-			$pk->items = $slots;
-			$this->dataPacket($pk);
-		}
-
-		$this->server->sendRecipeList($this);
 
 		$this->sendSelfData();
 		$this->updateSpeed($this->movementSpeed);
